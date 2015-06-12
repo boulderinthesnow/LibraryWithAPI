@@ -25,9 +25,10 @@ app.get("/" , function(req, res) {
 
 //index
 app.get("/games", function(req, res) {
-
-
-	res.render("games/index")
+	db.Game.find({}, function(err, games) {
+		if (err) throw err
+		res.render("games/index", {games:games})
+	})
 })
 
 //NEW
@@ -37,24 +38,56 @@ app.get("/games/new", function(req, res) {
 
 //CREATE
 app.post("/games", function(req, res) {
+	console.log("foo")
 	var game = new db.Game(req.body.game)
 	game.save(function(err){
 		if (err) throw err
-			res.redirect("/")
+			res.redirect("/games")
 	})
 	
 })
 
 // SHOW
-app.get("games/:id", function(req, res) {
+app.get("/games/:id", function (req, res) {
+	var id = req.params.id
+	console.log(id, "id ##############")
+	db.Game.findById(id, function (err, game) {
+		if (err) throw err
+			else {
+				res.render("games/show.ejs", {game:game})
+			}
 
+
+	})
 })
 
 // EDIT 
+app.get("/games/:id/edit", function (req, res) {
+	db.Game.findById(req.params.id, function (err, game) {
+		if (err) throw err
+			else {
+				res.render("games/edit.ejs", {game:game})
+			}
+	})
+})
 
 // UPDATE 
+app.put("/games/:id", function (req, res) {
+	var id = req.params.id
+	// find and edit on db
+	// return to main page with all ids
+	db.Game.findByIdAndUpdate(id, req.body.game, function (err, data){
+		res.redirect("/games")
+	})
+})
 
 // DESTROY
+app.delete("/games/:id/delete", function (req, res) {
+	var id = req.params.id
+	db.Game.findByIdAndRemove(id, req.body.game, function (err, data) {
+		res.redirect("/games")
+	})
+})
 
 
 app.listen(3000, function(){

@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+
+<p>YO NEW</p>
+
+	<form action="/games" method="POST">
+		<p>Name</p>
+			<input type="text" name="game[name]">
+		<p>Date</p>	
+			<input type="text" name="game[date]">
+		<p>Platform</p>	
+			<input type="text" name="game[platform]">
+		<p>Photo</p>	
+			<input type="text" name="game[photo]">
+			<p></p>
+			<input type="submit" value="Create Game">
+	</form>
+</p>
+
+
+
+<% include ../partials/footer %>

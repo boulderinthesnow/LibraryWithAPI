@@ -1,0 +1,23 @@
+
+
+<% include ../partials/header %>
+
+<h1>You've made it to Edit!! Rejoice!</h1>
+
+
+	<form action="/games/<%=game.id%>/?_method=PUT" method="POST">
+		<p>Name</p>
+			<input type="text" name="game[name]" value="<%= game.name %>">
+		<p>Date</p>	
+			<input type="text" name="game[date]" value="<%= game.date %>">
+
+		<p>Platform</p>	
+			<input type="text" name="game[platform]" value="<%= game.platform %>">
+		<p>Photo</p>	
+			<input type="text" name="game[photo]" value="<%= game.photo %>">
+			<p></p>
+			<input type="submit" value="Create Game">
+	</form>
+</p>
+
+<% include ../partials/footer %>

@@ -1,0 +1,19 @@
+<% include ../partials/header %>
+
+<h1>INDEX.EJS</h1>
+<% games.forEach(function(game){  %>
+	<p>Name</p>
+	<p><%= game.name %></p>
+	<p>Date</p>
+	<p><%= game.date %></p>
+	<p>Platform</p>
+	<p><%= game.platform %></p>
+	<p>Photo</p>
+	<p><img src="<%= game.photo %>" alt=""></p>
+	<p><a href="games/<%=game.id%>">Details</a></p>
+	<p><a href="games/<%=game.id%>/edit">Edit</a></p>
+	<p><a href="games/<%=game.id%>/delete">Delete</a></p>
+<% }) %>
+
+
+<% include ../partials/footer %>
