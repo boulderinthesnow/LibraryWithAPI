@@ -12,7 +12,9 @@
 	<p><img src="<%= game.photo %>" alt=""></p>
 	<p><a href="games/<%=game.id%>">Details</a></p>
 	<p><a href="games/<%=game.id%>/edit">Edit</a></p>
-	<p><a href="games/<%=game.id%>/delete">Delete</a></p>
+	<form action="/games/<%=game.id%>?_method=DELETE" method="POST">
+		<input type="submit" value="KILL">
+	</form>
 <% }) %>
 
 

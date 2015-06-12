@@ -82,7 +82,7 @@ app.put("/games/:id", function (req, res) {
 })
 
 // DESTROY
-app.delete("/games/:id/delete", function (req, res) {
+app.delete("/games/:id", function (req, res) {
 	var id = req.params.id
 	db.Game.findByIdAndRemove(id, req.body.game, function (err, data) {
 		res.redirect("/games")
